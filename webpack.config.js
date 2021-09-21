@@ -36,7 +36,17 @@ module.exports = {
             loader: 'babel-loader',
             options: {
               presets: ['@babel/preset-env']
-            }  
+            }
+          }
+        ]
+      },{
+        test: /\.html$/i,
+        use: [
+          {
+            loader: 'raw-loader',
+            options: {
+              esModule: false
+            }
           }
         ]
       }
@@ -45,11 +55,6 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'index.html'
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
-        { from: 'src/video', to: 'video' }
-      ]
     }),
     new webpack.ProvidePlugin({
       $: 'jquery',
@@ -60,6 +65,6 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     inline: true,
-    port: 8096
+    port: 2708
   }
 }
